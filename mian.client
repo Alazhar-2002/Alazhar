@@ -1,0 +1,14 @@
+public class mainclient21s20819 
+{
+    public static void main (String args[])
+    {
+        client21s20819 Alazharcl=new  client21s20819();
+        Thread Saif=new Thread(Alazharcl);
+        Saif.start();
+        
+        
+        
+                
+    }
+    
+}
