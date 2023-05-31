@@ -1,0 +1,86 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class server21s20819 implements Runnable
+{
+ public void run() 
+ {
+     try{
+         
+         String Adhost="jdbc:derby://localhost:1527/Alazhar";
+         String Adname="al2002";
+         String Adpass="Almec6050";
+         
+         Connection Asd2002=DriverManager.getConnection(Adhost,Adname,Adpass);
+         
+         ServerSocket Saidad98=new ServerSocket (5650);
+         System.out.println("Server Mazyon work");
+         
+         while(true){
+             Socket Alazhars=Saidad98.accept();
+             
+             DataInputStream Aldiss=new DataInputStream(Alazhars.getInputStream());
+             int Alcode = Aldiss.readInt();
+             int Arq = Aldiss.readInt();
+             
+             System.out.println("The code is"+Alcode);
+             System.out.println("The code is"+Arq);
+             
+             Statement dadas=Asd2002.createStatement();
+             String momohr="SELECT * FROM TASTING WHERE AZCODE="+Alcode;
+             
+             ResultSet ALars=dadas.executeQuery(momohr);
+             
+             DataOutputStream Aldoss=new DataOutputStream(Alazhars.getOutputStream());
+             while(ALars.next()){
+                 String Asname= ALars.getString("AZNAME");
+                 
+                 double Nhr= ALars.getDouble("AZPRICE");
+                 double Asprice= Arq*Nhr;
+                 
+                 Aldoss.writeUTF(Asname);
+                 Aldoss.writeDouble(Asprice);
+                 
+                 System.out.println("Send to the cliet");
+                 
+             }
+         }
+         
+     }
+     
+     catch(SQLException e)
+     {
+         System.out.println(e);
+     } catch (IOException ex) {
+         Logger.getLogger(server21s20819.class.getName()).log(Level.SEVERE, null, ex);
+     }
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
