@@ -1,0 +1,11 @@
+public class mainserver21s20819 
+         
+{
+ public static void main(String args[]) 
+{ 
+    server21s20819 Azser=new server21s20819();
+    Thread Azfo=new Thread(Azser);
+    Azfo.start();
+    
+}  
+}
